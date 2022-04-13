@@ -1,5 +1,7 @@
 *~
 assets/*png
+!build/SDL2.dll
+!build/SDL2_image.dll
 build/*
 .cache
 .vscode
