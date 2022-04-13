@@ -1,0 +1,6 @@
+*~
+assets/*png
+build/*
+.cache
+.vscode
+

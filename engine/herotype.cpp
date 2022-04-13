@@ -1,0 +1,2 @@
+#include "herotype.h"
+
