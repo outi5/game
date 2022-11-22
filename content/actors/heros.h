@@ -26,12 +26,16 @@ const std::unordered_map<std::string, Reaction> key_bindings = {
          return std::make_unique<Move>(Vec{0, -1});
      }},
     {"Z", []() { return std::make_unique<Rest>(); }},
-    {"C", []() { return std::make_unique<CloseDoor>(); }}
-};
+    {"C", []() { return std::make_unique<CloseDoor>(); }}};
 
 constexpr int default_speed{8};
 const HeroType nobody{"none", default_speed, 1, std::make_shared<None>(), {}};
 const HeroType knight{"knight", default_speed, 1, std::make_shared<None>(),
                       key_bindings};
-
+const HeroType elf{"elf", default_speed, 1, std::make_shared<None>(),
+                   key_bindings};
+const HeroType wizard{"wizard", default_speed, 1, std::make_shared<None>(),
+                      key_bindings};
+const HeroType dragon{"dragon", default_speed, 1, std::make_shared<None>(),
+                      key_bindings};
 }  // namespace Heros
