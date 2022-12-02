@@ -5,6 +5,7 @@
 #include "move.h"
 #include "none.h"
 #include "rest.h"
+#include "sword.h"
 
 namespace Heros {
 
@@ -36,6 +37,6 @@ const HeroType elf{"elf", default_speed, 1, std::make_shared<None>(),
                    key_bindings};
 const HeroType wizard{"wizard", default_speed, 1, std::make_shared<None>(),
                       key_bindings};
-const HeroType dragon{"dragon", default_speed, 1, std::make_shared<None>(),
+const HeroType dragon{"dragon", default_speed, 1, std::make_shared<Sword>(5),
                       key_bindings};
 }  // namespace Heros
