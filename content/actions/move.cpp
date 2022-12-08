@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "actor.h"
+#include "attack.h"
 #include "engine.h"
 #include "tile.h"
 
@@ -14,7 +15,7 @@ Result Move::perform(Engine& engine) {
     Tile& tile = engine.dungeon.tiles(new_position);
 
     // if not walkable and not a door, allow retry
-    if (tile.is_wall() || tile.actor) {
+    if (tile.is_wall()) {
         return failure();
     }
 
@@ -24,6 +25,11 @@ Result Move::perform(Engine& engine) {
         door.open();
         tile.walkable = true;
         return success();
+    }
+
+    if (tile.actor) {
+        std::cout << "Ima attack you!/n";
+        return alternative(Attack{*tile.actor});
     }
 
     actor->change_direction(direction);

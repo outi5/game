@@ -1,5 +1,6 @@
 #pragma once
 
+#include "axe.h"
 #include "closedoor.h"
 #include "herotype.h"
 #include "move.h"
@@ -33,10 +34,10 @@ constexpr int default_speed{8};
 const HeroType nobody{"none", default_speed, 1, std::make_shared<None>(), {}};
 const HeroType knight{"knight", default_speed, 1, std::make_shared<None>(),
                       key_bindings};
-const HeroType elf{"elf", default_speed, 1, std::make_shared<None>(),
+const HeroType elf{"elf", default_speed, 1, std::make_shared<Axe>(4),
                    key_bindings};
 const HeroType wizard{"wizard", default_speed, 1, std::make_shared<None>(),
                       key_bindings};
-const HeroType dragon{"dragon", default_speed, 1, std::make_shared<Sword>(5),
+const HeroType dragon{"dragon", default_speed, 1, std::make_shared<Axe>(3),
                       key_bindings};
 }  // namespace Heros

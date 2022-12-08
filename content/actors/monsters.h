@@ -8,6 +8,7 @@
 #include "none.h"
 #include "randomness.h"
 #include "rest.h"
+#include "sword.h"
 #include "wander.h"
 
 namespace Monsters {
@@ -66,17 +67,17 @@ std::unique_ptr<Action> default_behavior(Engine& engine, Monster& me) {
 // MonsterType goblin();
 /* ********
    Likewise, I could not get this to build if I put it in mosters.cpp,
-   but I could get it to build here, so I left it for now. What am I 
+   but I could get it to build here, so I left it for now. What am I
    missing (I fully expect this to be a face-palm moment)
    ********
 */
 
 constexpr int default_speed{8};
-int default_health = 2;
+int default_health = 6;
 const MonsterType goblin{"goblin", default_speed, default_health,
-                         std::make_shared<None>(), default_behavior};
+                         std::make_shared<Sword>(2), default_behavior};
 const MonsterType zombie_small{"zombie_small", default_speed, default_health,
-                               std::make_shared<None>(), default_behavior};
+                               std::make_shared<Sword>(2), default_behavior};
 const MonsterType skeleton{"skeleton", default_speed, default_health,
-                           std::make_shared<None>(), default_behavior};
+                           std::make_shared<Sword>(2), default_behavior};
 }  // namespace Monsters

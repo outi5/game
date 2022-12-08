@@ -7,7 +7,7 @@ spear 293 177 6 30
 bow 325 180 7 25
 arrow 308 186 7 21
 
-sword 323 26 10 21
+sword 323 26 10 21 
 sword_rusty 307 26 10 21
 sword_red_gem 339 26 10 21
 sword_big 322 81 12 30

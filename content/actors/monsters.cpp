@@ -1,6 +1,7 @@
 #include "monsters.h"
 
 #include "randomness.h"
+#include "sword.h"
 #include "wander.h"
 
 std::unique_ptr<Action> default_behavior(Engine& engine, Monster& me) {
@@ -28,6 +29,6 @@ constexpr int default_speed{8};
 
 MonsterType goblin() {
     int health = 2;
-    return {"goblin", default_speed, health, std::make_shared<None>(),
+    return {"goblin", default_speed, health, std::make_shared<Sword>(2),
             default_behavior};
 }
