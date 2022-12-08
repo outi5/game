@@ -28,7 +28,6 @@ Result Move::perform(Engine& engine) {
     }
 
     if (tile.actor) {
-        std::cout << "Ima attack you!/n";
         return alternative(Attack{*tile.actor});
     }
 

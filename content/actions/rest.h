@@ -2,7 +2,7 @@
 
 #include "action.h"
 
-// Do nothing this turn
+// increases actor's health by 2
 class Rest : public Action {
 public:
     Result perform(Engine& engine) override;
