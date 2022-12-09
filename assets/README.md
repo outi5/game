@@ -1,92 +1,79 @@
-# Game for CSC-231
-This code serves as the final project for CSC 231 Software
-Development. It consists of a game engine that you will use to create
-a game through a series of steps.
+# Engine update to allow animated effects
+This updated engine makes rendering sprites at dungeon locations much
+easier. This is useful for animated effects such as projectiles and
+spells.
 
-The engine written by WLC faculty is built on top of the fantastic
-game library [SDL](https://www.libsdl.org/) to handle user input and
-graphics. The engine provides features to implement a simple 2D
-turn-based game, similar to a
-[Roguelike](https://en.wikipedia.org/wiki/Roguelike) game.
+# Instructions
+Replace your engine files with the ones included in this patch.
 
-The engine by itself does nothing, but by creating concrete types for
-Heros, Monsters, Weapons, and Actions, you will be able to write a fun
-game rather quickly.
-
-
-## Building
-The game engine is written in C++ and uses features from the C++17
-standard. [CMake](https://cmake.org/) is used to build all components.
-and works well with the
-[CMakeTools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
-extension in VSCode.
-
-To configure it manually, type
-
-```
-cd build
-cmake ..
-```
-then build it using
-```
-cmake --build .
+# List of changes
+## Camera
+Member function `add_overlay` was added to `class Camera` to allow for
+easy drawing of a sprite at a dungeon location. Sprites passed into
+this function are drawn on top of all others.
+```C++
+class Camera {
+public:
+    void add_overlay(const Vec& position, const Sprite& sprite);
+}
 ```
 
-Either method generates an executable in the build directory called
-`game`. This executable expects to find the settings
-
-## Running
-Unlike in MacOS or Linux, Windows requires that the SDL2 and
-SDL2_image libraries files be in the same directory as the
-executable. Copy the following `dll` files into the `build` folder.
-
-Make sure that your terminal is open in the same folder that contains
-`settings.txt` and run `./build/game` on MacOS/Linux and
-`.\build\game.exe` on Windows.
-
-
-# Folder structure
-In this directory, there is a `settings.txt` file that contains
-general settings for the game, including screen resolutions and zoom
-levels, locations of asset files (images of characters and others),
-and some properties for the map.
-
-## Engine
-The C++ code for the engine is located inside `engine`. Also inside
-this folder are prebuilt libraries for `SDL2` and `SDL2_image`. **You
-will not need to modify any code within the engine folder** and for
-your sanity, please don't.  However, you will need to **read lots of
-code within the engine** in order to know how to use it.
-
-
-## Content
-Place all of your code within the folder `content`. CMake will handle
-include paths to files within the engine, so you should be able to
-just include the name of the file you wish to use, e.g. `#include
-"engine.h"`, and it will just work.
-
-## Assets
-The engine can load 2D graphical sprites from png images (called a
-[spritesheet](https://en.wikipedia.org/wiki/Texture_atlas)) using a
-simple asset file. The first line of the asset file must be the file
-name of the png image.  The rest of the file can contain a list of
-named sprites and their locations (x, y, width, height) within the
-image file. Optionally, if a sprite is animated the number of frames
-in the animation can appear after the location. It is assumed that
-frames appear horizontally in the image and are equally-spaced. Here's
-the format:
-
-```
-image_filename.png
-
-name_of_sprite x y width height
-animated_sprite x y width height frames
+## Graphics
+Member function `get_animated_sprite` now takes two parameters to
+control randomness in frame ordering:
+```C++
+class Graphics {
+public:
+    AnimatedSprite get_animated_sprite(const std::string& name, int ticks_per_frame,
+                                       bool random_start=false, bool shuffle_order=false) const;
 ```
 
-The dungeon was designed by and can be purchased from
-[SecretHideout](https://secrethideout.itch.io/rogue-dungeon-tileset-16x16).
-
-The heros, monsters, weapons, and items were created by and can be
-purchased from [Robert(0x72)](https://0x72.itch.io/dungeontileset-ii).
+Because of this change `decorator.cpp`, `monster.cpp`, and `hero.cpp` were updated.
 
 
+## AnimatedSprite
+Member function `number_of_frames()` was added to `class
+AnimatedSprite` to query the number of frames in the sequence.
+```C++
+class AnimatedSprite {
+public:
+    int number_of_frames() const;
+}
+```
+This is useful for setting the `number_of_frames` of an `Event`:
+```C++
+class AnimationEvent : public Event {
+public:
+    AnimationEvent(Vec position) :position{position} {}
+    void execute(Engine& engine) override {
+        if (frame_count == 0) {
+            AnimatedSprite sprite = engine.graphics.get_animated_sprite("name", 1);
+            number_of_frames = sprite.number_of_frames();
+        }
+        engine.camera.add_overlay(position, sprite.get_sprite());
+        sprite.update();
+    }
+private:
+    Vec position;
+};
+```
+
+## Settings
+A new `effects` asset file entry was added:
+```C++
+struct Settings {
+    std::string effects;
+};
+```
+and the `Engine` constructor was updated to load it:
+```C++
+Engine::Engine(const Settings& settings) {
+    ...
+    graphics.load_spritesheet(settings.effects);
+    ...
+}
+```
+Add the following line to settings.txt:
+```
+effects assets/effects.txt
+```
