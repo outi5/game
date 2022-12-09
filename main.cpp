@@ -8,12 +8,12 @@ int main() {
     Engine engine{settings};
 
     engine.create_hero(Heros::dragon);
-    engine.create_monster(Monsters::goblin);
+    engine.create_monster(Monsters::goblin());
     for (int i = 0; i <= 5; ++i) {
-        engine.create_monster(Monsters::zombie_small);
+        engine.create_monster(Monsters::zombie_small());
     };
     for (int i = 0; i <= 5; ++i) {
-        engine.create_monster(Monsters::skeleton);
+        engine.create_monster(Monsters::skeleton());
     };
     engine.run();
 }

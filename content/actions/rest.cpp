@@ -6,7 +6,11 @@
 #include "engine.h"
 
 Result Rest::perform(Engine&) {
-    actor->health += 2;
-    std::cout << "I feel better!\n";
-    return success();
+    if (actor->health < actor->max_health) {
+        actor->take_damage(-2);
+        std::cout << "I feel better!\n";
+        return success();
+    } else {
+        return failure();
+    }
 }

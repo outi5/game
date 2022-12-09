@@ -4,6 +4,8 @@
 #include "sword.h"
 #include "wander.h"
 
+namespace Monsters {
+
 std::unique_ptr<Action> default_behavior(Engine& engine, Monster& me) {
     // pursue Hero if monster can see him (If Hero sees me, I see him)
     if (me.is_visible() && engine.hero) {
@@ -26,9 +28,21 @@ std::unique_ptr<Action> default_behavior(Engine& engine, Monster& me) {
     }
 }
 constexpr int default_speed{8};
+constexpr int default_health(3);
 
 MonsterType goblin() {
-    int health = 2;
-    return {"goblin", default_speed, health, std::make_shared<Sword>(2),
+    return {"goblin", default_speed, default_health, std::make_shared<Sword>(2),
             default_behavior};
 }
+
+MonsterType zombie_small() {
+    return {"zombie_small", default_speed, default_health,
+            std::make_shared<Sword>(2), default_behavior};
+}
+
+MonsterType skeleton() {
+    return {"skeleton", default_speed, default_health,
+            std::make_shared<Sword>(2), default_behavior};
+}
+
+}  // namespace Monsters

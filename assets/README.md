@@ -26,6 +26,7 @@ class Graphics {
 public:
     AnimatedSprite get_animated_sprite(const std::string& name, int ticks_per_frame,
                                        bool random_start=false, bool shuffle_order=false) const;
+}
 ```
 
 Because of this change `decorator.cpp`, `monster.cpp`, and `hero.cpp` were updated.
@@ -55,6 +56,7 @@ public:
     }
 private:
     Vec position;
+    AnimatedSprite sprite;
 };
 ```
 

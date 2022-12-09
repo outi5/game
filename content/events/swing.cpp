@@ -29,7 +29,7 @@ Swing::Swing(Sprite& sprite, Vec direction, Actor& defender, int damage)
         delta = 90.0 / (duration - 1) * sign;
     } else  // (direction == Vec{0, -1})
     {
-        sprite.shift.x -= 0;
+        sprite.shift.x = 0;
         double sign = std::copysign(1.0, starting_angle);
         starting_angle = 135 * sign;
         delta = 90.0 / (duration - 1) * sign;

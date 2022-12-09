@@ -7,6 +7,7 @@
 #include "actor.h"
 #include "engine.h"
 #include "randomness.h"
+#include "rest.h"
 #include "tile.h"
 
 Result Wander::perform(Engine& engine) {
@@ -21,4 +22,5 @@ Result Wander::perform(Engine& engine) {
             return alternative(Move{direction});
         }
     }
+    return alternative(Rest{});
 }
