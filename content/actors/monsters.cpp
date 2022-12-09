@@ -1,6 +1,13 @@
 #include "monsters.h"
 
+#include "axe.h"
+#include "closedoor.h"
+#include "engine.h"
+#include "monstertype.h"
+#include "move.h"
+#include "none.h"
 #include "randomness.h"
+#include "rest.h"
 #include "sword.h"
 #include "wander.h"
 
