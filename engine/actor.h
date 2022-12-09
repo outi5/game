@@ -17,6 +17,7 @@ public:
     virtual void change_direction(const Vec& direction);
     virtual void move_to(const Vec& position);
     const Vec& get_position() const;
+    const Vec& get_direction() const;
     bool is_visible() const;
 
     void take_damage(int amount);
@@ -32,7 +33,7 @@ protected:
 
 public:
     // health gets reduced by calling take damage
-    int health;
+    int health, max_health;
     bool alive;
 
     

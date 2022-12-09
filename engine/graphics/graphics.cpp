@@ -99,18 +99,18 @@ Sprite Graphics::get_sprite(const std::string& name) const {
 }
 
 AnimatedSprite Graphics::get_animated_sprite(const std::string& name, int ticks_per_frame,
-                                             bool randomize) const {
+                                             bool random_start, bool shuffle_order) const {
     auto i = sprites.find(name);
     if (i == sprites.end()) {
         throw std::runtime_error("Cannot find sprite: " + name);
     }
 
     std::vector<Sprite> sprites = i->second;
-    if (randomize) {
+    if (shuffle_order) {
         shuffle(std::begin(sprites), std::end(sprites));
     }
         
-    if (sprites.size() > 1) {
+    if (sprites.size() > 1 && random_start) {
         // choose random starting frame
         int starting_frame = randint(0, sprites.size() - 1);
         return AnimatedSprite{sprites, ticks_per_frame, starting_frame};

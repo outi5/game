@@ -22,7 +22,7 @@ public:
     void load_spritesheet(const std::string& filename);
     Sprite get_sprite(const std::string& name) const;
     AnimatedSprite get_animated_sprite(const std::string& name, int ticks_per_frame,
-                                       bool randomize=false) const;
+                                       bool random_start=false, bool shuffle_order=false) const;
         
     void clear();  // clear the screen
     void draw_rect(const Vec& pixel, const Vec& size, int r, int g, int b, int alpha);

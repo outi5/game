@@ -20,6 +20,7 @@ struct Settings {
     std::string monsters;
     std::string weapons;
     std::string items;
+    std::string effects;
 
     // dungeon parameters
     int map_width;

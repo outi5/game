@@ -10,7 +10,7 @@ public:
     void flip(bool flip); // flip sprite horizontally
     void update();        // move to next frame of animation
     Sprite get_sprite() const;
-
+    int number_of_frames() const;
     bool visible;
         
 private:

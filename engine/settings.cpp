@@ -24,6 +24,7 @@ Settings read_settings(const std::string& path) {
     settings.monsters = parameters.at("monsters");
     settings.weapons = parameters.at("weapons");
     settings.items = parameters.at("items");
+    settings.effects = parameters.at("effects");
     settings.map_width = std::stoi(parameters.at("map_width"));
     settings.map_height = std::stoi(parameters.at("map_height"));
     settings.room_placement_attempts = std::stoi(parameters.at("room_placement_attempts"));

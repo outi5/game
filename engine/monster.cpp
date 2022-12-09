@@ -6,7 +6,7 @@ constexpr double WEAPON_ANGLE = 20;
 
 Monster::Monster(Engine& engine, const MonsterType& type, const Vec& position)
     :Actor{engine, position, type.max_health, TEAM_MONSTER, type.speed}, type{type} {
-    sprite = engine.graphics.get_animated_sprite(type.name, 1);
+    sprite = engine.graphics.get_animated_sprite(type.name, 1, true);
     type.weapon->sprite = engine.graphics.get_sprite(type.weapon->name);
     type.weapon->sprite.shift.x = sprite.get_sprite().size.x/8;
     type.weapon->sprite.angle = WEAPON_ANGLE;

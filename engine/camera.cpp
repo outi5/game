@@ -98,16 +98,20 @@ void Camera::render_healthbar(int current_health, int max_health) {
     graphics.draw_rect({20, 20}, {length, 20}, 50, 255, 50, 255);
 }
 
-void Camera::add_overlay(std::function<void()> overlay) {
-    overlays.push_back(overlay);
+void Camera::add_overlay(const Vec& position, const Sprite& sprite) {
+    overlays.push_back({position, sprite});
 }
 
 void Camera::render_overlays() {
-    for (auto& func : overlays) {
-        func();
+    for (auto [position, sprite] : overlays) {
+        render(position, sprite);
     }
+}
+
+void Camera::update() {
     overlays.clear();
 }
+
 
 Vec Camera::world_to_screen(const Vec& position) const {
     // World Coords (cartesian, up is positive y) -> Pixel Coords (image, down is positive y):

@@ -210,7 +210,7 @@ void Decorator::place_torches() {
     bool randomize{true};
     for (auto& position : positions) {
         if (probability(50)) {
-            doodads[position] = graphics.get_animated_sprite(sprite_name, ticks_per_frame, randomize);
+            doodads[position] = graphics.get_animated_sprite(sprite_name, ticks_per_frame, randomize, randomize);
         }
     }
 }

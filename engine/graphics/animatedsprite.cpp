@@ -28,3 +28,6 @@ Sprite AnimatedSprite::get_sprite() const {
     return sprites.at(current_frame);
 }
 
+int AnimatedSprite::number_of_frames() const {
+    return sprites.size();
+}

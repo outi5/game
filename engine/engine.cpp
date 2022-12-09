@@ -21,6 +21,7 @@ Engine::Engine(const Settings& settings)
     graphics.load_spritesheet(settings.monsters);
     graphics.load_spritesheet(settings.weapons);
     graphics.load_spritesheet(settings.items);
+    graphics.load_spritesheet(settings.effects);
     
     // create dungeon layout
     Builder builder(settings.room_placement_attempts);
@@ -93,6 +94,8 @@ void Engine::handle_input() {
 }
 
 void Engine::update() {
+    camera.update();
+    
     // update all dungeon tiles, mostly updating animate sprites
     dungeon.update();
 

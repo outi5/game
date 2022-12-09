@@ -1,13 +1,13 @@
 #pragma once
 
 #include "vec.h"
-#include <unordered_set>
+#include "sprite.h"
 #include <vector>
+#include <unordered_map>
 #include <functional>
 
 // forward declaration
 class Graphics;
-struct Sprite;
 class Dungeon;
 class Actors;
 class Engine;
@@ -24,8 +24,10 @@ public:
     void render_fog(const Dungeon& dungeon) const;
     void render_rect(const Vec& position, int red, int green, int blue, int alpha) const;
     void render_healthbar(int current_health, int max_health);
-    void add_overlay(std::function<void()> overlay);
+    void add_overlay(const Vec& position, const Sprite& sprite);
     void render_overlays();
+
+    void update();
 
     // translate actor positions to pixel positions
     Vec world_to_screen(const Vec& position) const;
@@ -46,6 +48,7 @@ private:
     void calculate_visibility_limits();
     bool within_view(const Vec& position) const;
 
-    std::vector<std::function<void()>> overlays;
+    //std::vector<std::function<void()>> overlays;
+    std::vector<std::pair<Vec, Sprite>> overlays;
 };
 
