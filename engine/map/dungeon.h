@@ -18,7 +18,8 @@ public:
     Dungeon() = default;
     Dungeon(const Grid<Tile>& tiles, const std::vector<Room>& rooms,
             const std::unordered_map<Vec, Door>& doors,
-            const std::unordered_map<Vec, AnimatedSprite>& doodads);
+            const std::unordered_map<Vec, AnimatedSprite>& doodads,
+            const std::unordered_set<Vec>& torch_positions);
 
     // return the position of an unoccupied tile
     Vec random_open_room_tile() const;
@@ -52,5 +53,6 @@ public:
     std::vector<Room> rooms;
     std::unordered_map<Vec, Door> doors;
     std::unordered_map<Vec, AnimatedSprite> doodads; // decorations on tiles (e.g. torches)
+    std::unordered_set<Vec> torch_positions;
     Fog fog; // used for computing which tiles are visible for hero
 };

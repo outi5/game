@@ -23,6 +23,7 @@ private:
     Grid<Tile> tiles;
     std::unordered_map<Vec, Door> doors;
     std::unordered_map<Vec, AnimatedSprite> doodads;
+    std::unordered_set<Vec> torch_positions;
         
     void set_tile_type(const Grid<int>& layout, int x, int y);
     void set_tile_sprites();

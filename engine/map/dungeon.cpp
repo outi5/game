@@ -5,8 +5,9 @@
     
 Dungeon::Dungeon(const Grid<Tile>& tiles, const std::vector<Room>& rooms,
                  const std::unordered_map<Vec, Door>& doors,
-                 const std::unordered_map<Vec, AnimatedSprite>& doodads)
-    :tiles{tiles}, rooms{rooms}, doors{doors}, doodads{doodads} {
+                 const std::unordered_map<Vec, AnimatedSprite>& doodads,
+                 const std::unordered_set<Vec>& torch_positions)
+    :tiles{tiles}, rooms{rooms}, doors{doors}, doodads{doodads}, torch_positions{torch_positions} {
     // all tiles are not visible when first created
     for (int y = 0; y < tiles.height; ++y) {
         for (int x = 0; x < tiles.width; ++x) {
