@@ -8,6 +8,7 @@ heros assets/heros.txt
 monsters assets/monsters.txt
 weapons assets/weapons.txt
 items assets/items.txt
+effects assets/effects.txt
 map_width 39
 map_height 21
 room_placement_attempts 200
