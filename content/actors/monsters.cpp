@@ -38,8 +38,8 @@ constexpr int default_speed{8};
 constexpr int default_health(3);
 
 MonsterType goblin() {
-    return {"goblin", default_speed, default_health, std::make_shared<Sword>(2),
-            default_behavior};
+    return {"goblin", default_speed, default_health * 2,
+            std::make_shared<Sword>(2), default_behavior};
 }
 
 MonsterType zombie_small() {
