@@ -1,5 +1,6 @@
 #pragma once
 
+#include "axe.h"
 #include "closedoor.h"
 #include "engine.h"
 #include "monster.h"
@@ -51,8 +52,8 @@ std::unique_ptr<Action> default_behavior(Engine& engine, Monster& me) {
 
 constexpr int default_speed{8};
 int default_health = 6;
-const MonsterType goblin{"goblin", default_speed, default_health,
-                         std::make_shared<Sword>(2), default_behavior};
+const MonsterType goblin{"goblin", default_speed, default_health + 6,
+                         std::make_shared<Axe>(3), default_behavior};
 const MonsterType zombie_small{"zombie_small", default_speed, default_health,
                                std::make_shared<Sword>(2), default_behavior};
 const MonsterType skeleton{"skeleton", default_speed, default_health,

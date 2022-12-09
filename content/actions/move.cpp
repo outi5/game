@@ -14,6 +14,8 @@ Result Move::perform(Engine& engine) {
     Vec new_position = position + direction;
     Tile& tile = engine.dungeon.tiles(new_position);
 
+    actor->change_direction(direction);
+
     // if not walkable and not a door, allow retry
     if (tile.is_wall()) {
         return failure();
@@ -31,7 +33,6 @@ Result Move::perform(Engine& engine) {
         return alternative(Attack{*tile.actor});
     }
 
-    actor->change_direction(direction);
     actor->move_to(new_position);
     return success();
 }
