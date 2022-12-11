@@ -1,5 +1,6 @@
 #include "monsters.h"
 
+#include "attack.h"
 #include "axe.h"
 #include "closedoor.h"
 #include "engine.h"
@@ -19,13 +20,9 @@ std::unique_ptr<Action> default_behavior(Engine& engine, Monster& me) {
         Vec from = me.get_position();
         Vec to = engine.hero->get_position();
         std::vector<Vec> path = engine.dungeon.calculate_path(from, to);
-        if (path.size() > 2) {
-            Vec direction = path.at(1) - path.at(0);
-            return std::make_unique<Move>(direction);
-        } else {
-            // this is TEMPORARY until attack is implemented
-            return std::make_unique<Rest>();
-        }
+        Vec direction = path.at(1) - path.at(0);
+        return std::make_unique<Move>(direction);
+
     }
     // Monster doesn't see Hero
     if (probability(66)) {
