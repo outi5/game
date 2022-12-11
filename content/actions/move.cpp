@@ -5,6 +5,7 @@
 #include "actor.h"
 #include "attack.h"
 #include "engine.h"
+#include "rest.h"
 #include "tile.h"
 
 Move::Move(Vec direction) : direction{direction} {}
@@ -30,7 +31,11 @@ Result Move::perform(Engine& engine) {
     }
 
     if (tile.actor) {
-        return alternative(Attack{*tile.actor});
+        if (tile.actor->team == actor->team) {
+            return alternative(Rest{});
+        } else {
+            return alternative(Attack{*tile.actor});
+        }
     }
 
     actor->move_to(new_position);
