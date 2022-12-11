@@ -16,7 +16,7 @@ Firebomb::Firebomb(Vec location, Actor& actor)
 void Firebomb::execute(Engine& engine) {
     if (frame_count == 0) {
         AnimatedSprite fire = engine.graphics.get_animated_sprite("fire", 1);
-        std::cout << "Number of Frames: " << number_of_frames << std::endl;
+        number_of_frames = fire.number_of_frames();
     }
 
     engine.camera.add_overlay(location, fire.get_sprite());
