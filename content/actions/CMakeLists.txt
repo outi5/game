@@ -5,6 +5,7 @@ add_library(actions
   wander.cpp
   attack.cpp
   castfire.cpp
+  opendoor.cpp
   )
 
 target_include_directories(actions PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

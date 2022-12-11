@@ -5,6 +5,7 @@
 #include "actor.h"
 #include "attack.h"
 #include "engine.h"
+#include "opendoor.h"
 #include "rest.h"
 #include "tile.h"
 
@@ -24,10 +25,7 @@ Result Move::perform(Engine& engine) {
 
     // if a closed door, open it
     if (tile.is_door() && !tile.walkable) {
-        Door& door = engine.dungeon.doors.at(new_position);
-        door.open();
-        tile.walkable = true;
-        return success();
+        return alternative(OpenDoor{new_position});
     }
 
     if (tile.actor) {
