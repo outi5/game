@@ -5,6 +5,7 @@
 #include "actor.h"
 #include "engine.h"
 #include "events.h"
+#include "firebomb.h"
 #include "hit.h"
 
 Result CastFire::perform(Engine& engine) {
@@ -30,18 +31,20 @@ Result CastFire::perform(Engine& engine) {
                        I'm also not sure why it's requiring me to make fire a
                        const here, but it is.
                     */
-                    const AnimatedSprite& fire =
-                        engine.graphics.get_animated_sprite("fire", 6);
-                    engine.camera.add_overlay(location, fire.get_sprite());
+                    // const AnimatedSprite& fire =
+                    //     engine.graphics.get_animated_sprite("fire", 6);
+
+                    engine.events.add(Firebomb{location, *actor});
+                    // engine.camera.add_overlay(location, fire.get_sprite());
 
                     /*
                        If I could get the previous 3 lines to be an event,
                        then this next part could be the "when_done" for that
                        event, which would seem correct.
                     */
-                    if (tile.actor) {
-                        engine.events.add(Hit{*tile.actor, 10});
-                    };
+                    // if (tile.actor) {
+                    //     engine.events.add(Hit{*tile.actor, 10});
+                    // };
                 };
             };
 
