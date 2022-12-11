@@ -49,4 +49,9 @@ MonsterType skeleton() {
             std::make_shared<Sword>(2), default_behavior};
 }
 
+MonsterType demon_big() {
+    return {"demon_big", default_speed, 20,
+            std::make_shared<Axe>(2), default_behavior};
+}
+
 }  // namespace Monsters
