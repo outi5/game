@@ -1,6 +1,7 @@
 #pragma once
 
 #include "axe.h"
+#include "castfire.h"
 #include "closedoor.h"
 #include "herotype.h"
 #include "move.h"
@@ -28,6 +29,7 @@ const std::unordered_map<std::string, Reaction> key_bindings = {
          return std::make_unique<Move>(Vec{0, -1});
      }},
     {"Z", []() { return std::make_unique<Rest>(); }},
+    {"T", []() { return std::make_unique<CastFire>(); }},
     {"C", []() { return std::make_unique<CloseDoor>(); }}};
 
 constexpr int default_speed{8};
