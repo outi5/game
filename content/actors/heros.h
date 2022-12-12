@@ -33,7 +33,7 @@ const std::unordered_map<std::string, Reaction> key_bindings = {
     {"C", []() { return std::make_unique<CloseDoor>(); }}};
 
 constexpr int default_speed{8};
-int default_health = 10;
+int default_health = 20;
 const HeroType nobody{
     "none", default_speed, default_health, std::make_shared<None>(), {}};
 const HeroType knight{"knight", default_speed, default_health,

@@ -20,11 +20,12 @@ void Firebomb::execute(Engine& engine) {
 void Firebomb::when_done(Engine& engine) {
     Tile& tile = engine.dungeon.tiles(location);
 
-    // create Hit event if there is an actor on the tile
+    // create Hit event if there is an actor on the tile, as well as alway
+    // damaging the actor 1 for firebombing
     if (tile.actor) {
         engine.events.add(Hit{*tile.actor, damage});
-    } else {  // when no actor, create a "fake" hit event on hero, to complete
-              // action
-        engine.events.add(Hit{actor, 0});
+        engine.events.add(Hit{actor, 1});
+    } else {
+        engine.events.add(Hit{actor, 1});
     };
 }
